@@ -6,16 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="formularioTareas">
-    <input type="text" id="inputTarea" placeholder="Ingresa una tarea...">
-    <button id= "btn" type="submit">Agregar</button>
+    <form id="formularioCrearTareas">
+    <input type="text" id="inputCrearTarea" placeholder="Ingresa una tarea...">
+    <button id="btnCrearTarea" type="submit">Agregar</button>
 </form>
 
-<div id="contenedorTareas"></div>
+<div id="contenedorAlmacenarTareas"></div>
 
 <template id="templateTarea">
-    <div class="divTarea">
-        <p class="textoTarea"></p>
+    <div class="divTarea" style="background-color: blue;">
+        <p class="textoTarea">felipe</p>
+        <button class="btnTachar">Tachar</button>
+        <button class="btnEliminar">Eliminar</button>
     </div>
 </template>
     <script src="main.js"></script>
