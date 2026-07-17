@@ -1,9 +1,10 @@
 let boton= document.getElementById("btn")
 let formularioTareas= document.getElementById("formularioTareas")
-let inputArea = document.getElementById("inputTarea")
+let inputTarea = document.getElementById("inputTarea")
 let contenedorTareas= document.getElementById("contenedorTareas")
-let templateDiv= document.getElementById("templateTarea").content
-let objetoTareas
+let templateDiv= document.getElementById("templateTarea").content.firstElementChild
+let objetoTareas = {}
+
 
 boton.addEventListener("click",(e) =>{
     e.preventDefault()
@@ -11,15 +12,14 @@ boton.addEventListener("click",(e) =>{
         console.log("no escribiste nada")
     }
     else{
-        nuevaTarea=inputArea.value.trim()
+        nuevaTarea=inputTarea.value.trim()
         idUnico=Date.now()
-        objetoTareas={
-            [idUnico]: nuevaTarea
-        }
-        let clon = templateDiv.cloneNode("true")
+        objetoTareas[idUnico] = nuevaTarea
+        let clon = templateDiv.cloneNode(true)
+        clon.querySelector(".textoTarea").textContent = nuevaTarea
         console.log(clon)
-        clon.querySelector(".textoTarea").textContent = inputTarea.value.trim()
         contenedorTareas.append(clon)
+        
         console.log(objetoTareas)
     }
 
