@@ -18,13 +18,24 @@ document.addEventListener("DOMContentLoaded",(e)=>{
     pintarTareas()
     
 })
-console.log(objetoTareas)
 formularioCrearTareas.addEventListener("submit",(e)=>{
     e.preventDefault()
+    if (inputCrearTarea.value.trim() === ""){
+        alert("No puedes agregar una tarea vacía")
+        return
+    }
     guardarTareas()
     
     
 })
+document.addEventListener("click",(e)=>{
+    if (e.target.className == "btnEliminar"){
+        borrarTareas(e)}
+    if (e.target.className == "btnTachar"){
+        tacharTareas(e)}
+})
+
+
 
 function guardarTareas(){
     let fecha= Date.now()
@@ -52,14 +63,17 @@ function pintarTareas(){
     }
     
 }
-document.addEventListener("click",(e)=>{
-    if (e.target.className == "btnEliminar"){
-        delete objetoTareas[e.target.parentElement.id]
-        console.log(e.target.parentElement.id)
-        console.log(objetoTareas)
-        pintarTareas()
-    }
-    
-})
+function borrarTareas(e){
+    delete objetoTareas[e.target.parentElement.id]
+    console.log(e.target.parentElement.id)
+    console.log(objetoTareas)
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas()
+}
+function tacharTareas(e){
+    objetoTareas[e.target.parentElement.id].estado = true
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas(e)
+}
 
 
