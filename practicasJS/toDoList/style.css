@@ -1,0 +1,9 @@
+.divTarea{
+    background-color: rgb(172, 0, 0);
+    color: white;
+}
+.tachado {
+    text-decoration: line-through;
+    background-color: rgb(0, 231, 0);
+    color: white;
+}

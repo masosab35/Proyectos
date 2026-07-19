@@ -29,10 +29,22 @@ formularioCrearTareas.addEventListener("submit",(e)=>{
     
 })
 document.addEventListener("click",(e)=>{
-    if (e.target.className == "btnEliminar"){
-        borrarTareas(e)}
-    if (e.target.className == "btnTachar"){
-        tacharTareas(e)}
+    if (e.target.classList.contains("btnEliminar")){
+        borrarTareas(e)
+         return
+        }
+       
+    else if (e.target.classList.contains("btnTachar")){
+          if (objetoTareas[e.target.parentElement.id].estado){
+            destacharTareas(e)
+            console.log("destachado")
+            return
+            }
+        tacharTareas(e)
+        console.log("tachado")
+        return
+        }
+        
 })
 
 
@@ -58,6 +70,10 @@ function pintarTareas(){
         let textoTarea = clone.querySelector(".textoTarea")
         clone.setAttribute("id",objetoTareas[key].id)
         textoTarea.textContent = objetoTareas[key].texto
+        if (objetoTareas[key].estado){
+            clone.classList.add("tachado")
+        }
+
         contenedorAlmacenarTareas.append(clone)
         
     }
@@ -75,5 +91,8 @@ function tacharTareas(e){
     localStorage.setItem("tareas",JSON.stringify(objetoTareas))
     pintarTareas(e)
 }
-
-
+function destacharTareas(e){
+    objetoTareas[e.target.parentElement.id].estado = false
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas(e)
+}
