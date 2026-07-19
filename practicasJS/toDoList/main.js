@@ -18,13 +18,36 @@ document.addEventListener("DOMContentLoaded",(e)=>{
     pintarTareas()
     
 })
-console.log(objetoTareas)
 formularioCrearTareas.addEventListener("submit",(e)=>{
     e.preventDefault()
+    if (inputCrearTarea.value.trim() === ""){
+        alert("No puedes agregar una tarea vacía")
+        return
+    }
     guardarTareas()
     
     
 })
+document.addEventListener("click",(e)=>{
+    if (e.target.classList.contains("btnEliminar")){
+        borrarTareas(e)
+         return
+        }
+       
+    else if (e.target.classList.contains("btnTachar")){
+          if (objetoTareas[e.target.parentElement.id].estado){
+            destacharTareas(e)
+            console.log("destachado")
+            return
+            }
+        tacharTareas(e)
+        console.log("tachado")
+        return
+        }
+        
+})
+
+
 
 function guardarTareas(){
     let fecha= Date.now()
@@ -47,19 +70,29 @@ function pintarTareas(){
         let textoTarea = clone.querySelector(".textoTarea")
         clone.setAttribute("id",objetoTareas[key].id)
         textoTarea.textContent = objetoTareas[key].texto
+        if (objetoTareas[key].estado){
+            clone.classList.add("tachado")
+        }
+
         contenedorAlmacenarTareas.append(clone)
         
     }
     
 }
-document.addEventListener("click",(e)=>{
-    if (e.target.className == "btnEliminar"){
-        delete objetoTareas[e.target.parentElement.id]
-        console.log(e.target.parentElement.id)
-        console.log(objetoTareas)
-        pintarTareas()
-    }
-    
-})
-
-
+function borrarTareas(e){
+    delete objetoTareas[e.target.parentElement.id]
+    console.log(e.target.parentElement.id)
+    console.log(objetoTareas)
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas()
+}
+function tacharTareas(e){
+    objetoTareas[e.target.parentElement.id].estado = true
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas(e)
+}
+function destacharTareas(e){
+    objetoTareas[e.target.parentElement.id].estado = false
+    localStorage.setItem("tareas",JSON.stringify(objetoTareas))
+    pintarTareas(e)
+}
