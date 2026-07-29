@@ -1,0 +1,25 @@
+article {
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
+  background-color: rgb(167, 159, 149);
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  border: 1px solid #ff9100;
+}
+article p, article h2 {
+  margin: 1rem;
+}
+article:hover {
+  box-shadow: 0px 1rem 4rem rgba(0, 0, 0, 0.3);
+}
+.post-1 {
+  border-color: #8c540a;
+}
+.post-2 {
+  border-color: #ff9100;
+}
+.post-3 {
+  border-color: #00ffff;
+}
