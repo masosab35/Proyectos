@@ -1,0 +1,10 @@
+{%extends "layout.html"%}
+{%block body %}
+    {%if name is not string or name == ''%}
+        <p>Vuelve y escribe un nombre</p>
+    {% else %}
+        <p>Hola {{name}}!</p>
+    {% endif %}
+    <form action="{{url_for('root')}}"><button>Volver atras</button></form>
+    
+{%endblock%}
