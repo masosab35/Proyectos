@@ -1,0 +1,14 @@
+{%extends "layout.html"%}
+{% block body %}
+{%for post in posts%}
+<section>
+    <h2>{{ post.titulo }}</h2>
+    <p>{{ post.fecha }}</p>
+    <p>{{ post.texto }}</p>
+    <form method="post" action="{{url_for('borrar')}}">
+        <input type="hidden" name="boton_eliminar" value="{{post.id}}">
+        <button type="submit">Eliminar</button>
+    </form>
+</section>
+{%endfor%}
+{% endblock %}

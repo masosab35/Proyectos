@@ -1,0 +1,9 @@
+{%extends "layout.html"%}
+{% block body %}
+    <h1>Agregar Tarea</h1>
+    <form method="post" action="{{url_for('crear')}}">
+        <input type="text" name="titulo" placeholder="Ingrese una tarea" required>
+        <input type="text" name="texto" placeholder="Ingrese la descripción de la tarea" required>
+        <button type="submit">Agregar</button>
+    </form>
+{% endblock %}

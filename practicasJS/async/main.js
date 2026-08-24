@@ -1,10 +1,10 @@
-let saludo= () => {
+let saludo = () => {
     return new Promise((resolve, reject) => {
     if (false) {
         reject(new Error("Ocurrio un error"));
     }
     setTimeout(() => {
-        dato= "Hola mundo";
+        dato = "Hola mundo";
         resolve(dato);
     }, 4000);
     })

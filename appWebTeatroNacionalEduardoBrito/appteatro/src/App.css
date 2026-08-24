@@ -1,0 +1,58 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+body{
+  font-family: "Inter";
+}
+.barraNav{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.ulDeUsuario{
+  
+  display: flex;
+  flex-direction: row;
+  list-style:none;
+  gap: 50px;
+  padding: 10px;
+  padding-left: 5%;
+  
+  
+}
+.ulDelBuscador{
+  
+  display: flex;
+  flex-direction: row;
+  list-style:none;
+  gap: 50px;
+  padding: 10px;
+  
+  
+}
+.logoNav{
+  padding: 10px;
+  padding-right: 5%;
+
+}
+#tituloInicio{
+  margin: 75px 0 0 60px;
+
+}
+#descripcionInicio{
+  margin: 30px 0 0 60px;
+  width: 65%;
+}
+#botonInicio{
+  margin: 30px 0 0 60px;
+  background-color: black;
+  color: rgb(255, 248, 235);
+  width: 250px;
+  padding: 15px;
+  border-radius: 5px;
+}

@@ -11,3 +11,9 @@ for (let i = 0; i <= stock.length; i++){
 
 }
 divPadre.append(...arregloFinal);
+
+const stock2 = stock.map(num => num);
+console.log({ stock2 });
+stock2[3] = 'Amortigua Skyline';
+console.log({ stock })
+console.log({ stock2 });

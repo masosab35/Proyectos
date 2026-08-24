@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Lista de Tareas</h1>
+    <ul>
+    {%for i in tareas%}
+    <li>{{i}}</li>
+    {%endfor%}
+    </ul>
+    <a href="{{url_for('agregar')}}">Agregar Tarea</a>
+{% endblock %}
