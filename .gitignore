@@ -1,0 +1,65 @@
+# Dependencias de Node / frontend
+node_modules/
+**/node_modules/
+.npm/
+.parcel-cache/
+.cache/
+.next/
+.angular/
+coverage/
+**/coverage/
+dist/
+**/dist/
+build/
+**/build/
+out/
+**/out/
+*.tsbuildinfo
+
+# Archivos de compilación y artefactos
+/.cache/
+**/.cache/
+/.parcel-cache/
+**/.parcel-cache/
+/.next/
+**/.next/
+/.angular/
+**/.angular/
+
+# Python / Django / Flask
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+ENV/
+.env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+*.sqlite3
+**/*.sqlite3
+db.sqlite3
+**/db.sqlite3
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Caches extra de herramientas
+/.pytest_cache/
+**/.pytest_cache/
+/.mypy_cache/
+**/.mypy_cache/
