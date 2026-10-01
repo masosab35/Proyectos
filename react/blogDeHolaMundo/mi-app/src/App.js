@@ -1,23 +1,41 @@
 import Post from './componentes/post';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios'
 
 function App() {
-  const [puntaje,setPuntaje] = useState(
-    localStorage.getItem("puntaje")? JSON.parse(localStorage.getItem("puntaje")):{cafe:0,te:0,pintura:0}
-  );
+  const [puntaje,setPuntaje] = useState(null)
+    //localStorage.getItem("puntaje")? JSON.parse(localStorage.getItem("puntaje")):{cafe:0,te:0,pintura:0}
+  ;
   const [estadoClick, setClickeado] = useState("noClick");
   const [estadoEleccion, setEleccion] = useState(false)
   
+  useEffect(
+    () =>{
+    axios.get('http://localhost:3001/elementos')
+    .then(e => setPuntaje(e.data))
+    .catch((error)=> {
+      console.log(error)
+    })
+    
+  }
+  ,[])
+  const enviarDatos = (datos) =>{
+    axios.put('http://localhost:3001/elementos',datos)
+  }
   const cambiarBotonClickeado= () =>{
     setClickeado("botonClickeado")
   }
   const cambiarCafeClickeado = () =>{
+    
     setPuntaje(prev => {
-      let nuevo= {...puntaje ,cafe: prev.cafe + 1};
-      localStorage.setItem("puntaje",JSON.stringify(nuevo))
-      return nuevo
+      if (!prev) return prev
+      const copia = prev.map(e => e.id == 1? {...e, puntos: e.puntos + 1} : e);
+      enviarDatos(copia.find(e => e.id == 1))
+      
+      return copia
     })
+    console.log(puntaje)
     setClickeado("cafeClickeado")
     setEleccion(true)
     window.scrollTo({
@@ -26,11 +44,15 @@ function App() {
     });
   }
   const cambiarTeClickeado = () =>{
+    
     setPuntaje(prev => {
-      let nuevo= {...puntaje ,te: prev.te + 1};
-      localStorage.setItem("puntaje",JSON.stringify(nuevo))
-      return nuevo
+      if (!prev) return prev
+      const copia = prev.map(e => e.id == 2? {...e, puntos: e.puntos + 1} : e);
+      enviarDatos(copia.find(e => e.id == 2))
+      
+      return copia
     })
+    console.log(puntaje)
     setClickeado("teClickeado")
     setEleccion(true)
     window.scrollTo({
@@ -40,10 +62,13 @@ function App() {
   }
   const cambiarPinturaClickeado = () =>{
     setPuntaje(prev => {
-      let nuevo= {...puntaje ,pintura: prev.pintura + 1};
-      localStorage.setItem("puntaje",JSON.stringify(nuevo))
-      return nuevo
+      if (!prev) return prev
+      const copia = prev.map(e => e.id == 3? {...e, puntos: e.puntos + 1} : e);
+      enviarDatos(copia.find(e => e.id == 3))
+      
+      return copia
     })
+    console.log(puntaje)
     setClickeado("pinturaClickeado")
     setEleccion(true)
     window.scrollTo({
@@ -69,9 +94,9 @@ function App() {
           <Post onclick={cambiarTeClickeado} titulo = "Foto de Te" descripcion = "El mejor te del mundo" ruta = "tea" parrafo = "Ven y mira como preparar el mejor cafe que podrias probar" alt = "te"></Post>
           <Post onclick={cambiarPinturaClickeado} titulo = "Foto de Pintura" descripcion = "La pintura que esta en la boca de todos" ruta = "painting" parrafo = "Mira la ciencia detras de la pintura mas famosa del momento" alt="pintura"></Post>
           </>: null}
-          {(estadoClick === "cafeClickeado")? <p className = "resultado">Tu y {puntaje.cafe} mas han elegido el cafe</p>: null}
-          {(estadoClick === "teClickeado")? <p className = "resultado">Tu y {puntaje.te} mas han elegido el te</p>: null}
-          {(estadoClick === "pinturaClickeado")? <p className = "resultado">Tu y {puntaje.pintura} mas han elegido la pintura</p>: null}
+          {(estadoClick === "cafeClickeado")? <p className = "resultado">Tu y {puntaje[0].puntos} mas han elegido el cafe</p>: null}
+          {(estadoClick === "teClickeado")? <p className = "resultado">Tu y {puntaje[1].puntos} mas han elegido el te</p>: null}
+          {(estadoClick === "pinturaClickeado")? <p className = "resultado">Tu y {puntaje[2].puntos} mas han elegido la pintura</p>: null}
           {(estadoEleccion === true)? <button onClick={volveraVotar}>Volver a votar</button>: null}
 
 
