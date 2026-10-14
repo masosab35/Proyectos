@@ -1,14 +1,34 @@
 import React from 'react';
-import '../hojasDeEstilo/post.css'
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 
 function post({ titulo , descripcion , ruta , parrafo, alt, onclick}){
     return(
-        <article className="post-1" onClick={onclick}>
-            <h2>{titulo}</h2>
-            <p>{descripcion}</p>
-            <img src= {`/IMG/${ruta}.jpg`} alt={`Foto de ${alt}`} width="400px"/>
-            <p>{parrafo}</p>
-        </article>
+        <Card
+         className="post-1" onClick={onclick}
+         sx={{
+            marginTop:"30px"
+         }}>
+            <CardActionArea>
+                <CardMedia
+                component="img"
+                image={`/IMG/${ruta}.jpg`}
+                height="200"
+                alt="Card Image"
+                />
+                <CardContent>
+                <h2>{titulo}</h2>
+                <p>{descripcion}</p>
+                <p>{parrafo}</p>
+                </CardContent>
+            </CardActionArea>
+        </Card>
     )
 }
 
